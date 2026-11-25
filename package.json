@@ -1,0 +1,1 @@
+{"description":"TicketTray — a tiny help-desk board built by an AI agent and verified with Kane CLI.","engines":{"node":">=18"},"license":"MIT","name":"tickettray","private":true,"scripts":{"start":"node server.js","test":"node --test \"test/*.test.js\""},"version":"1.0.0"}
