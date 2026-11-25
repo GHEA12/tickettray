@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TicketTray — a tiny help desk that proves itself</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>TicketTray</h1>
+  <p class="tagline">A tiny help-desk board. Add a ticket, work it across the board, watch the numbers stay honest. Built by an AI agent, verified by Kane CLI.</p>
+</header>
+
+<section id="summary" aria-label="Summary">
+  <div class="stat"><span class="stat-label">Open</span><span class="stat-value" id="stat-open">0</span></div>
+  <div class="stat"><span class="stat-label">In Progress</span><span class="stat-value" id="stat-progress">0</span></div>
+  <div class="stat"><span class="stat-label">Done</span><span class="stat-value" id="stat-done">0</span></div>
+  <div class="stat"><span class="stat-label">Open load</span><span class="stat-value"><span id="stat-load">0</span> min</span></div>
+  <div class="stat"><span class="stat-label">Urgent waiting</span><span class="stat-value" id="stat-urgent">0</span></div>
+</section>
+
+<section id="new-ticket">
+  <h2>New ticket</h2>
+  <form id="ticket-form" novalidate>
+    <label>Requester
+      <input type="text" id="requester" placeholder="e.g. Ana from Finance" autocomplete="off">
+    </label>
+    <label>Subject
+      <input type="text" id="subject" placeholder="e.g. Replace my broken keyboard" autocomplete="off">
+    </label>
+    <label>Priority
+      <select id="priority">
+        <option>Low</option>
+        <option selected>Normal</option>
+        <option>High</option>
+        <option>Urgent</option>
+      </select>
+    </label>
+    <label>Estimated minutes
+      <input type="number" id="minutes" min="1" step="1" value="15">
+    </label>
+    <button type="submit" id="add-button">Add ticket</button>
+  </form>
+  <p id="form-error" class="error" role="alert" hidden></p>
+  <p id="form-ok" class="ok" hidden></p>
+</section>
+
+<section id="tools">
+  <label>Filter by priority
+    <select id="filter-priority">
+      <option selected>All</option>
+      <option>Low</option>
+      <option>Normal</option>
+      <option>High</option>
+      <option>Urgent</option>
+    </select>
+  </label>
+  <label>Search
+    <input type="text" id="search" placeholder="subject, requester, or TT-id" autocomplete="off">
+  </label>
+  <button type="button" id="reset-button">Reset demo data</button>
+</section>
+
+<main id="board">
+  <section class="column" aria-label="Open column">
+    <h2>Open <span class="count" id="count-open">0</span></h2>
+    <div class="cards" id="col-open"></div>
+  </section>
+  <section class="column" aria-label="In Progress column">
+    <h2>In Progress <span class="count" id="count-progress">0</span></h2>
+    <div class="cards" id="col-progress"></div>
+  </section>
+  <section class="column" aria-label="Done column">
+    <h2>Done <span class="count" id="count-done">0</span></h2>
+    <div class="cards" id="col-done"></div>
+  </section>
+</main>
+
+<footer>
+  <p>State is saved in your browser (localStorage), so a reload keeps the board. TicketTray was built for the Kane CLI Online Hackathon by TestMu AI.</p>
+</footer>
+
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
